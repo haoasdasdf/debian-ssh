@@ -13,13 +13,7 @@ RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config 
 
 RUN mkdir -p /var/run/sshd
 
-EXPOSE 22
-EXPOSE 80
-EXPOSE 443
-EXPOSE 9999
-EXPOSE 10000
-EXPOSE 10001
-EXPOSE 12595
+EXPOSE 22 80 443 9999 10000 10001 12595
 
 # My custom
 WORKDIR /root/
