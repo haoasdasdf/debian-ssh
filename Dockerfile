@@ -32,6 +32,5 @@ RUN echo '[program:sshd]' >> /etc/supervisor/conf.d/sshd.conf
 RUN echo 'command=/usr/sbin/sshd -D' >> /etc/supervisor/conf.d/sshd.conf
 RUN sed -i "s/\/var\/run/\/dev\/shm/g" /etc/supervisor/supervisord.conf
 
-CMD ["mkdir", "/root/.ssh"]
-CMD ["touch","/root/.ssh/authorized_keys"]
+CMD ["mkdir", "/root/.ssh", "&&", "touch", "/root/.ssh/authorized_keys"]
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
