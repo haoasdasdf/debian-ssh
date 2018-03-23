@@ -26,7 +26,7 @@ RUN echo 'deb-src http://security.debian.org/debian-security stretch/updates mai
 RUN mkdir -p /root/.ssh
 RUN touch /root/.ssh/authorized_keys
 
-RUN apt-get update && apt-get install  git nano supervisor curl wget cron screen -y 
+RUN apt-get update && apt-get install  git nano supervisor curl wget cron screen python-pip python3-pip -y 
 
 # Config Supervisor and sshd
 RUN apt-get install -y supervisor
