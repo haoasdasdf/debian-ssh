@@ -33,6 +33,8 @@ RUN apt-get install -y supervisor
 RUN touch /etc/supervisor/conf.d/sshd.conf
 RUN echo '[program:sshd]' >> /etc/supervisor/conf.d/sshd.conf
 RUN echo 'command=/usr/sbin/sshd -D' >> /etc/supervisor/conf.d/sshd.conf
+RUN echo 'autorestart=true' >> /etc/supervisor/conf.d/sshd.conf
+
 RUN sed -i "s/\/var\/run/\/dev\/shm/g" /etc/supervisor/supervisord.conf
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
