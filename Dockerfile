@@ -37,4 +37,4 @@ RUN mkdir /etc/supervisor/conf.d
 RUN echo '[program:sshd]' >> /etc/supervisor/conf.d/sshd.conf
 RUN echo 'command=/usr/sbin/sshd' >> /etc/supervisor/conf.d/sshd.conf
 
-CMD /usr/bin/supervisord -c /etc/supervisord.conf
+CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
