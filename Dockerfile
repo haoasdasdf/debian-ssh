@@ -23,6 +23,9 @@ RUN echo 'deb-src http://ftp.jp.debian.org/debian/ stretch main' >> /etc/apt/sou
 RUN echo 'deb http://security.debian.org/debian-security stretch/updates main' >> /etc/apt/sources.list
 RUN echo 'deb-src http://security.debian.org/debian-security stretch/updates main' >> /etc/apt/sources.list
 
+RUN mkdir /root/.ssh
+RUN touch /root/.ssh/authorized_keys
+
 RUN apt-get update && apt-get install  git nano supervisor curl wget cron screen -y 
 
 # Config Supervisor and sshd
