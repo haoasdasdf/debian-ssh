@@ -32,4 +32,4 @@ RUN echo '[program:sshd]' >> /etc/supervisor/conf.d/sshd.conf
 RUN echo 'command=/usr/sbin/sshd -D' >> /etc/supervisor/conf.d/sshd.conf
 RUN sed -i "s/\/var\/run/\/dev\/shm/g" /etc/supervisor/supervisord.conf
 
-CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
