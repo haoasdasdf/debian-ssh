@@ -25,4 +25,16 @@ RUN echo 'deb-src http://security.debian.org/debian-security stretch/updates mai
 
 RUN apt-get update && apt-get install  git nano supervisor curl wget cron screen -y 
 
-CMD    ["/usr/sbin/sshd", "-D"]
+# Config Supervisor and sshd
+RUN apt-get install -y supervisor
+RUN mkdir /etc/supervisor
+RUN touch /etc/supervisor/supervisord.conf
+RUN echo '[supervisord]'  >> /etc/supervisor/supervisord.conf
+RUN echo 'nodaemon=true'  >> /etc/supervisor/supervisord.conf
+RUN echo '[include]'  >> /etc/supervisor/supervisord.conf
+RUN echo 'files = /etc/supervisor/conf.d/*.conf'  >> /etc/supervisor/supervisord.conf
+RUN mkdir /etc/supervisor/conf.d
+RUN echo '[program:sshd]' >> /etc/supervisor/conf.d/sshd.conf
+RUN echo 'command=/usr/sbin/sshd' >> /etc/supervisor/conf.d/sshd.conf
+
+CMD /usr/bin/supervisord -c /etc/supervisord.conf
